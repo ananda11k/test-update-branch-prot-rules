@@ -1,6 +1,6 @@
 {
   "required_status_checks": {
-    "strict": false,
+    "strict": true,
     "contexts": []
   },
   "required_pull_request_reviews": {
@@ -11,7 +11,9 @@
     "bypass_pull_request_allowances": {
       "users": [],
       "teams": [],
-      "apps": []
+      "apps": [
+        "a11k-org-bot"
+      ]
     }
   },
   "restrictions": null,

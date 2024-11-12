@@ -40,4 +40,4 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             /repos/ananda11k/test-update-branch-prot-rules/branches/main/protection \
-            --input '{"allow_deletions": false, "allow_force_pushes": false, "allow_fork_syncing": false, "block_creations": false, "enforce_admins": false, "lock_branch": false, "required_conversation_resolution": false, "required_linear_history": false, "required_signatures": false, "required_status_checks": null, "required_pull_request_reviews": null, "restrictions": null}'
+            --input override-branch-protection.json

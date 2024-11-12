@@ -9,7 +9,7 @@ env:
   NODE_VERSION: "20.x"
 
 jobs:
-  get-protection-rules:
+  protection-rules:
     runs-on: ubuntu-latest
     steps:
       - name: Generator token
@@ -35,9 +35,21 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          gh api \
-            --method PUT \
+          curl -L \
+            -X PUT \
             -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/ananda11k/test-update-branch-prot-rules/branches/main/protection \
-            -f @override-branch-protection.json
+            https://api.github.com/repos/ananda11k/test-update-branch-prot-rules/branches/main/protection \
+            -d '{"required_status_checks":{"strict":true,"contexts":[]},"enforce_admins":true,"required_pull_request_reviews":{"dismissal_restrictions":{"users":[],"teams":[]},"dismiss_stale_reviews":true,"require_code_owner_reviews":true,"required_approving_review_count":2,"require_last_push_approval":true,"bypass_pull_request_allowances":{"users":[],"teams":[]}},"restrictions":{"users":[],"teams":[],"apps":["a11k-org-bot"]},"required_linear_history":true,"allow_force_pushes":true,"allow_deletions":true,"block_creations":true,"required_conversation_resolution":true,"lock_branch":true,"allow_fork_syncing":true}'
+
+      # - name: Update Branch Protection Rules
+      #   env:
+      #     GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+      #   run: |
+      #     gh api \
+      #       --method PUT \
+      #       -H "Accept: application/vnd.github+json" \
+      #       -H "X-GitHub-Api-Version: 2022-11-28" \
+      #       /repos/ananda11k/test-update-branch-prot-rules/branches/main/protection \
+      #       -f @override-branch-protection.json

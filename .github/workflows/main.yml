@@ -41,7 +41,7 @@ jobs:
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/ananda11k/test-update-branch-prot-rules/branches/main/protection \
-            -d @override-branch-protection.json
+            -d @./.github/workflows/override-branch-protection.json
       # - name: Update Branch Protection Rules
       #   env:
       #     GH_TOKEN: ${{ steps.generate_token.outputs.token }}
